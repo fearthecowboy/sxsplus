@@ -20,9 +20,17 @@ namespace SxSplus {
 	class SxSMetadataProperty {
 		SafeString Key;
 		std::list<SafeString> Values;
+
+		~SxSMetadataProperty();
+		SxSMetadataProperty();
+		
 	};
 
 	class SxSMetadata {
+		std::list<SxSMetadataProperty> Properties;
+	};
+
+	class SxSMetadataFilter {
 		std::list<SxSMetadataProperty> Properties;
 	};
 

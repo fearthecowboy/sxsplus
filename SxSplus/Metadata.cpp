@@ -12,3 +12,6 @@
 
 #include "SxSMetadata.h"
 
+namespace SxSplus {
+
+};
