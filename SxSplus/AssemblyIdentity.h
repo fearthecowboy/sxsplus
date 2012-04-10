@@ -15,17 +15,16 @@
 #include "FourPartVersion.h"
 #include "PublicKeyToken.h"
 
-typedef struct AssemblyIdentity {
-	SafeString Name;
-	FourPartVersion Version;
-	enum Architecture Architecture;
-	SafeString Language;
-	PublicKeyToken token;
-#ifndef SXSPLUS_PRIVATE
-} AssemblyIdentity;
-#else
-public:
-	AssemblyIdentity();
-	~AssemblyIdentity();
-} AssemblyIdentity;
-#endif 
+namespace SxSplus {
+	class AssemblyIdentity {
+		SafeString Name;
+		FourPartVersion Version;
+		enum Architecture Architecture;
+		SafeString Language;
+		PublicKeyToken token;
+
+	public:
+		AssemblyIdentity();
+		~AssemblyIdentity();
+	};
+};

@@ -11,20 +11,11 @@
 // </license>
 //-----------------------------------------------------------------------
 
-
 #ifdef SXSPLUS_EXPORTS
 #define SXSPLUS_API  __declspec(dllexport)
 #else
 #define SXSPLUS_API __declspec(dllimport)
 #endif
-
-#define SxSCollection( itemType )			\
-	typedef struct itemType##s {			\
-		unsigned int Count;					\
-		unsigned int Size;					\
-		itemType** Items;					\
-	} itemType##s
-
 
 enum Architecture {
 	unknown		= 0,
@@ -40,14 +31,6 @@ enum Architecture {
     x64			= 3,
 	amd64		= 3,
 }; 
-
-#include "SafeString.h"
-#include "FourPartVersion.h"
-#include "AssemblyIdentity.h"
-#include "PublicKeyToken.h"
-#include "AssemblyReference.h"
-#include "SxSFile.h"
-#include "SxSMetadata.h"
 
 typedef void* SXS_ASSEMBLYREFERENCE;		// a reference to a single installed assembly
 typedef void* SXS_ASSEMBLYREFERENCES;		// a collection of references to installed assemblies 
@@ -88,9 +71,6 @@ const wchar_t* an_assembly_strongname = L"foo, Version=1.0.3300.0, Culture=neutr
 ///=======================================================================
 /// Enhanced LoadLibrary functions
 ///=======================================================================
-///+ #ifdef __cplusplus
-///+ extern "C" {
-///+ #endif
 
 #ifdef __cplusplus
 extern "C" {
@@ -124,8 +104,6 @@ SXSPLUS_API HMODULE SxSLoadLibraryExA(LPSTR libraryName,HANDLE reserved,DWORD dw
 ///
 SXSPLUS_API SXS_ASSEMBLYREFERENCE SxSGetAssembly(WSTRINGPARAM(assemblyStrongName));
 SXSPLUS_API SXS_ASSEMBLYREFERENCE SxSGetAssemblyA(STRINGPARAM(assemblyStrongName));
-
-
 
 ///
 /// Gets a list of assemblies 
@@ -260,13 +238,9 @@ SXSPLUS_API void SxS();
 ///
 SXSPLUS_API void SxSDispose(void* objectToDispose);
 
-SXSPLUS_API const SafeString* SxSTest();
-SXSPLUS_API AssemblyReferences* SxSTest2();
+SXSPLUS_API void* SxSTest();
+SXSPLUS_API void* SxSTest2();
 
 #ifdef __cplusplus
-} /* closing brace for extern "C" */
+}; /* closing brace for extern "C" */
 #endif
-
-///+ #ifdef __cplusplus
-///+ } /* closing brace for extern "C" */
-///+ #endif

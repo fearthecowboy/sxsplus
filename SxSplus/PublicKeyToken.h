@@ -11,7 +11,8 @@
 // </license>
 //-----------------------------------------------------------------------
 
-
-typedef struct _PublicKeyToken {
-	wchar_t key[16];
-} PublicKeyToken;
+namespace SxSplus {
+	class PublicKeyToken {
+		wchar_t key[16];
+	};
+};

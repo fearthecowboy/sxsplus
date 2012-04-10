@@ -11,16 +11,19 @@
 // </license>
 //-----------------------------------------------------------------------
 
+#include "SafeString.h"
+#include <list>
 
-typedef struct SxSMetadataProperty {
-	SafeString Key;
-	unsigned int Count;
-	SafeString* Values;
-} SxSMetadataProperty ;
 
-typedef struct SxSMetadata {
-	// AssemblyIdentity Assembly;
-	unsigned int Count;
-	SxSMetadataProperty* Properties;
-} SxSMetadata;
+namespace SxSplus {
 
+	class SxSMetadataProperty {
+		SafeString Key;
+		std::list<SafeString> Values;
+	};
+
+	class SxSMetadata {
+		std::list<SxSMetadataProperty> Properties;
+	};
+
+};

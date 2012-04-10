@@ -10,11 +10,23 @@
 // </license>
 //-----------------------------------------------------------------------
 
-#define SXSPLUS_PRIVATE
-#include "stdafx.h"
-#include "ptr.h"
-#include "List.h"
-#include "SxSplus.h"
-#include "ModuleStack.h"
-#include <Strsafe.h>
+#define _SCL_INSECURE_DEPRECATE
 
+
+
+#include <list>
+
+#include "stdafx.h"
+
+#include "SxSplus.h"
+
+SXSPLUS_API void* SxSTest2() {
+		
+	
+		std::list<wchar_t*> results;
+
+		results.push_front( L"Hello World" );
+
+		wprintf(L"%s", results.front() );
+		return NULL;
+	}

@@ -11,9 +11,9 @@
 // </license>
 //-----------------------------------------------------------------------
 
-typedef struct SxSFile {
-	SafeString FileName;
-	SafeString FullPath;
-} SxSFile ;
-
-SxSCollection(SxSFile);
+namespace SxSplus {
+	class SxSFile {
+		SafeString FileName;
+		SafeString FullPath;
+	};
+};

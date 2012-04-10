@@ -11,15 +11,15 @@
 // </license>
 //-----------------------------------------------------------------------
 
-
-#ifdef __cplusplus
 #include "ptr.h"
-	typedef struct ModuleStack {
-		HMODULE* Modules;					
-		unsigned int Count;	
-	#ifdef SXSPLUS_PRIVATE
-		ModuleStack(unsigned int size);
-		~ModuleStack();
-	#endif 
-} ModuleStack;
-#endif
+#include <list>
+
+namespace SxSplus {
+	class ModuleStack {
+		public:
+			std::list<HMODULE> Modules;				
+	
+			ModuleStack();
+			~ModuleStack();
+	};
+};

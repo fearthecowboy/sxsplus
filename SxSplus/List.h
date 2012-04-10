@@ -11,8 +11,11 @@
 // </license>
 //-----------------------------------------------------------------------
 
+//#include <list>
 #include "ptr.h"
 
+
+#if FALSE
 int NearestPowerOf2(int i){   
 	int x = ((i - 1) & i);   
 	return x ? NearestPowerOf2(x) : i << 1;
@@ -144,3 +147,5 @@ public:
 		}
 	}
 };
+
+#endif

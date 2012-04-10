@@ -1,4 +1,3 @@
-#pragma once
 //-----------------------------------------------------------------------
 // <copyright company="CoApp Project">
 //     Copyright (c) 2010-2012 Garrett Serack and CoApp Contributors. 
@@ -11,9 +10,5 @@
 // </license>
 //-----------------------------------------------------------------------
 
-namespace SxSplus {
-	class AssemblyReference {
-		AssemblyIdentity Identity;
-		SafeString Location;
-	};
-};
+#include "SxSMetadata.h"
+

@@ -4,7 +4,7 @@
     <Import Project="stage.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros">
-    <BaseOutDir>$(CommonOutputDir)output\any\$(Configuration)\</BaseOutDir>
+    <BaseOutDir>$(CommonOutputDir)output\$(TargetPlatform)\$(Configuration)\</BaseOutDir>
   </PropertyGroup>
   <PropertyGroup>
     <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>

@@ -28,5 +28,5 @@ extern HMODULE Kernel32Module;
 extern HMODULE NTDLLModule;
 
 #ifdef __cplusplus
-}
+};
 #endif

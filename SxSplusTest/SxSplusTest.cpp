@@ -6,7 +6,9 @@
 
 
 int _tmain(int argc, wchar_t* argv[]) {
+	/*
 	auto string = SxSTest();
+	
 	wprintf(string->Buffer);
 	SxSDispose((void*)string);
 
@@ -16,6 +18,9 @@ int _tmain(int argc, wchar_t* argv[]) {
 	}
 
 	SxSDispose((void*)ref);
+	*/
+	SxSTest();
+	auto ref = SxSTest2();
 
 	return 0;
 }

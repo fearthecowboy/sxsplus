@@ -20,8 +20,9 @@
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
     </Link>
     <ClCompile>
-      <AdditionalIncludeDirectories>$(OutDir)include;$(DDKInstallPath)inc\crt\;$(DDKInstallPath)inc\api\;%(AdditionalIncludeDirectories);$(IncludePath)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(DDKInstallPath)inc;$(DDKInstallPath)inc\crt\;$(DDKInstallPath)inc\api;$(DDKInstallPath)inc\api\crt;$(DDKInstallPath)inc\api\crt\stl60;$(OutDir)include;$(DDKInstallPath)inc\api\;%(AdditionalIncludeDirectories);$(IncludePath)</AdditionalIncludeDirectories>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <PreprocessorDefinitions>_SCL_SECURE_NO_WARNINGS;_WINDOWS;WINNT;WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>

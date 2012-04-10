@@ -10,18 +10,20 @@
 // </license>
 //-----------------------------------------------------------------------
 
-#define SXSPLUS_PRIVATE
+
 #include "stdafx.h"
-#include "SxSplus.h"
+#include "FourPartVersion.h"
+namespace SxSplus {
 
+	FourPartVersion::FourPartVersion() {
+		Value = 0;
+	}
+	FourPartVersion::FourPartVersion(unsigned __int64 value) {
+		Value = value;
+	}
 
-FourPartVersion::FourPartVersion() {
-	Value = 0;
-}
-FourPartVersion::FourPartVersion(unsigned __int64 value) {
-	Value = value;
-}
+	FourPartVersion FourPartVersion::Parse(const wchar_t* versionString) {
+		return FourPartVersion(0);
+	}
 
-FourPartVersion FourPartVersion::Parse(const wchar_t* versionString) {
-	return FourPartVersion(0);
-}
+};

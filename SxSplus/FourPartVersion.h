@@ -11,19 +11,17 @@
 // </license>
 //-----------------------------------------------------------------------
 
-typedef union FourPartVersion {
-	struct {
-		unsigned __int16 Major;
-		unsigned __int16 Minor;
-		unsigned __int16 Revision;
-		unsigned __int16 Build;
-	} DUMMYSTRUCTNAME;
-	unsigned __int64 Value;
-#ifndef SXSPLUS_PRIVATE
-} FourPartVersion;
-#else
-	FourPartVersion();
-	FourPartVersion(unsigned __int64 value);
-	FourPartVersion static Parse(const wchar_t* versionString);
-} FourPartVersion;
-#endif
+namespace SxSplus {
+	union FourPartVersion {
+		struct {
+			unsigned __int16 Major;
+			unsigned __int16 Minor;
+			unsigned __int16 Revision;
+			unsigned __int16 Build;
+		} DUMMYSTRUCTNAME;
+		unsigned __int64 Value;
+		FourPartVersion();
+		FourPartVersion(unsigned __int64 value);
+		FourPartVersion static Parse(const wchar_t* versionString);
+	};
+};

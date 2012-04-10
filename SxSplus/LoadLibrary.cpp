@@ -10,36 +10,36 @@
 // </license>
 //-----------------------------------------------------------------------
 
-
-
 #include "stdafx.h"
 #include "SxSplus.h"
-#include "SafeString.h"
-#include "ModuleStack.h"
-#include <Strsafe.h>
-#include "SxSInternal.h"
+#include "ptr.h"
 
 using namespace SxSplus;
 
-
-// This is an example of an exported variable
-// SXSPLUS_API int nSxSplus=0;
-
-SXSPLUS_API void SxSDispose(void* objectToDispose) {
-	Reference::DecrementReferenceCount(objectToDispose);
-}
-
-SXSPLUS_API void* SxSTest() {
-		
-	// auto filename = SafeString(1024);
-	Ptr<SafeString> result = new SafeString(1024);
-	Ptr<ModuleStack> stack = new ModuleStack();
-
-	for(auto it=stack->Modules.begin();it !=  stack->Modules.end() ; ++it) {
-		GetModuleFileNameW( *it, result->Buffer, result->Length);
-		wprintf(L" MODULE=>: %s\r\n", result->Buffer);
-	}
-		
+/// 
+/// Replacement for the Kernel32 Function LoadLibraryW
+///
+SXSPLUS_API HMODULE SxSLoadLibraryW(LPCWSTR libraryName) {
 	return NULL;
 }
 
+/// 
+/// Replacement for the Kernel32 Function LoadLibraryA
+///
+SXSPLUS_API HMODULE SxSLoadLibraryA(LPSTR libraryName) {
+	return NULL;
+}
+
+/// 
+/// Replacement for the Kernel32 Function LoadLibraryExW
+///
+SXSPLUS_API HMODULE SxSLoadLibraryExW(LPCWSTR libraryName,HANDLE reserved,DWORD dwFlags) {
+	return NULL;
+}
+
+/// 
+/// Replacement for the Kernel32 Function LoadLibraryExA
+///
+SXSPLUS_API HMODULE SxSLoadLibraryExA(LPSTR libraryName,HANDLE reserved,DWORD dwFlags) {
+	return NULL;
+}

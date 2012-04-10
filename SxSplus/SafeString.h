@@ -11,30 +11,30 @@
 // </license>
 //-----------------------------------------------------------------------
 
-typedef struct SafeString {
-	wchar_t*	Buffer;
-	size_t		Length;
-#ifndef SXSPLUS_PRIVATE
+namespace SxSplus {
+	class SafeString {
+	public:
+		wchar_t*	Buffer;
+		size_t		Length;
+
+	public:
+		~SafeString();
+		SafeString();
+		SafeString(const wchar_t* string,unsigned int maxlength = 256);
+		SafeString(unsigned int size);
+		SafeString(SafeString& copy);
+		bool IsNullOrEmpty() const;
+		SafeString& SPrintF(unsigned int maxLength, const wchar_t* format, ...); 
+		operator const wchar_t*() const;
+		operator wchar_t*();
+
+	private: 
+		void Resize(unsigned int maxlength);
+		void Deallocate();
+		void Empty();
+		void Copy( const wchar_t* string,unsigned int maxlength );
+
+	};
+
+	bool IsNullOrEmpty(const wchar_t* text);
 };
-#else 
-public:
-	~SafeString();
-	SafeString();
-	SafeString(const wchar_t* string,unsigned int maxlength = 256);
-	SafeString(unsigned int size);
-	SafeString(SafeString& copy);
-	bool IsNullOrEmpty() const;
-	SafeString& SPrintF(unsigned int maxLength, const wchar_t* format, ...); 
-	operator const wchar_t*() const;
-	operator wchar_t*();
-
-private: 
-	void Resize(unsigned int maxlength);
-	void Deallocate();
-	void Empty();
-	void Copy( const wchar_t* string,unsigned int maxlength );
-
-} SafeString;
-
-bool IsNullOrEmpty(const wchar_t* text);
-#endif 
