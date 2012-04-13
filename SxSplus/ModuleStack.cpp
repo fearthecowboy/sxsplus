@@ -14,6 +14,7 @@
 #include "stdafx.h"
 #include "ModuleStack.h"
 #include "winnt.h"
+#include <DbgHelp.h>
 
 namespace SxSplus {
 

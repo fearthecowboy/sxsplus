@@ -17,7 +17,7 @@
 #define WIN32_LEAN_AND_MEAN             // Exclude rarely-used stuff from Windows headers
 // Windows Header Files:
 #include <windows.h>
-#include <DbgHelp.h>
+
 
 #ifdef __cplusplus
 extern "C" {
@@ -30,3 +30,5 @@ extern HMODULE NTDLLModule;
 #ifdef __cplusplus
 };
 #endif
+
+#include "SxSplus.h"

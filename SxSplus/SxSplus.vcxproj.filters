@@ -39,9 +39,6 @@
     <ClInclude Include="SafeString.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="AssemblyIdentity.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="FourPartVersion.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -54,13 +51,13 @@
     <ClInclude Include="SxSInternal.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="AssemblyReference.h">
+    <ClInclude Include="Assembly.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SxSFile.h">
+    <ClInclude Include="File.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SxSMetadata.h">
+    <ClInclude Include="Metadata.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -86,13 +83,16 @@
     <ClCompile Include="Ptr.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SxSInternal.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="LoadLibrary.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Metadata.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Internal.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Assembly.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

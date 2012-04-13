@@ -32,8 +32,8 @@ enum Architecture {
 	amd64		= 3,
 }; 
 
-typedef void* SXS_ASSEMBLYREFERENCE;		// a reference to a single installed assembly
-typedef void* SXS_ASSEMBLYREFERENCES;		// a collection of references to installed assemblies 
+typedef void* SXS_ASSEMBLY;		// a reference to a single installed assembly
+typedef void* SXS_ASSEMBLIES;		// a collection of references to installed assemblies 
 typedef void* SXS_METADATA;					// a reference to the Metadata of an assembly
 typedef void* SXS_METADATAPROPERTY;			// a reference to an individual property in the metadata of an assembly
 typedef void* SXS_METADATAFILTER;			// a reference to a Metadata filter
@@ -42,7 +42,23 @@ typedef void* SXS_FILES;					// a reference to a collection of files in an assem
 typedef void* SXS_CONTEXT;					// a reference to a context that filters the selection of SXS assemblies
 
 #define WSTRINGPARAM( name ) const wchar_t* name, unsigned int name##Length
-#define STRINGPARAM( name ) const char* name, unsigned int name##Length
+#define STRINGPARAM( name ) const char* name, unsigned int name##Length, UINT name##CodePage
+
+
+/// 
+/// Definitions:
+///
+/// An Assembly Identity is composed of the following elements:
+///		Name					- a case-insensitive string composed of alphanumeric characters plus any of '-_[]().'
+///		Version					- a string in four-part version format: mmmmm.nnnnn.ooooo.ppppp. Each of the parts separated by periods can be 0-65535 inclusive.
+///		ProcessorArchitecture	- one of : 'x86', 'x64' or 'msil'
+///		PublicKeyToken			- a sixteen-digit hexadecimal string containing the public key token of the signing certificate
+///		Language (optional)		- an optional DHTML language code indicating the locale the assembly is created for.
+
+/// AssemblyCanonicalName : a string refering to a single assembly in the format:
+///                        "<NAME>, Version=<FOURPARTVERSION>, ProcessorArchitecture=<ARCH> ,PublicKeyToken=<PKT>, [Language=<LANG>]"
+
+
 
 // extern SXSPLUS_API int nSxSplus;
 /*
@@ -99,27 +115,43 @@ SXSPLUS_API HMODULE SxSLoadLibraryExA(LPSTR libraryName,HANDLE reserved,DWORD dw
 /// Trivial Assembly Interactions
 ///=======================================================================
 
+///
+/// Gets a reference to an assembly by passing it the strong name.
+/// if the SxSplus assembly cache doesn't have an assembly by that name
+/// it is created. 
+///
+/// The canonical assembly strong name must specify Name, Architecture, Version, PublicKeyToken
+/// and may optionally specify the Lanugage.
+///
+SXSPLUS_API SXS_ASSEMBLY SxSGetAssemblyByStrongName(WSTRINGPARAM(canonicalStrongName));
+SXSPLUS_API SXS_ASSEMBLY SxSGetAssemblyByStrongNameA(STRINGPARAM(canonicalStrongName));
+
+///
+/// Finds all assemblies that match the assm
+///
+SXSPLUS_API SXS_ASSEMBLIES SxSFindAssembliesByStrongName(WSTRINGPARAM(assemblyStrongName));
+SXSPLUS_API SXS_ASSEMBLIES SxSFindAssembliesByStrongNameA(STRINGPARAM(assemblyStrongName));
+
 /// 
 /// Gets a reference for the given side-by-side assembly (context not used)
 ///
-SXSPLUS_API SXS_ASSEMBLYREFERENCE SxSGetAssembly(WSTRINGPARAM(assemblyStrongName));
-SXSPLUS_API SXS_ASSEMBLYREFERENCE SxSGetAssemblyA(STRINGPARAM(assemblyStrongName));
+SXSPLUS_API SXS_ASSEMBLY SxSGetAssembly(SXS_ASSEMBLY);
 
 ///
 /// Gets a list of assemblies 
 ///
-SXSPLUS_API SXS_ASSEMBLYREFERENCES SxSGetAssemblies();
+SXSPLUS_API SXS_ASSEMBLIES SxSGetAssemblies();
 
 ///
 /// Finds assemblies that match the given criteria
 ///
-SXSPLUS_API SXS_ASSEMBLYREFERENCES SxSFindAssemblies(SXS_METADATAFILTER filter);
+SXSPLUS_API SXS_ASSEMBLIES SxSFindAssemblies(SXS_METADATAFILTER filter);
 
 
 ///
 /// Gets a list of files in an assembly
 ///
-SXSPLUS_API SXS_FILES SxSGetFiles(SXS_ASSEMBLYREFERENCE assemblyReference);
+SXSPLUS_API SXS_FILES SxSGetFiles(SXS_ASSEMBLY assembly);
 
 /// 
 /// Gets the folder for the given side-by-side assembly
@@ -153,12 +185,12 @@ SXSPLUS_API void SxSDeactivateContext(SXS_CONTEXT context);
 /// 
 /// Gets the per-assembly metadata for an assembly 
 ///
-SXSPLUS_API SXS_METADATA SxSGetAssemblyMetadata(SXS_ASSEMBLYREFERENCE assemblyReference);
+SXSPLUS_API SXS_METADATA SxSGetAssemblyMetadata(SXS_ASSEMBLY assembly);
 
 /// 
 /// Clears the per-assembly metadata for an assembly 
 ///
-SXSPLUS_API void SxSClearAssemblyMetadata(SXS_ASSEMBLYREFERENCE assemblyReference);
+SXSPLUS_API void SxSClearAssemblyMetadata(SXS_ASSEMBLY assembly);
 
 ///
 /// Adds per-assembly metadata to an installed assembly

@@ -10,7 +10,7 @@
 // </license>
 //-----------------------------------------------------------------------
 
-#include "SxSMetadata.h"
+#include "Metadata.h"
 
 namespace SxSplus {
 

@@ -18,7 +18,6 @@
 
 #include "stdafx.h"
 
-#include "SxSplus.h"
 
 SXSPLUS_API void* SxSTest2() {
 		

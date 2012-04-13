@@ -20,19 +20,21 @@ namespace SxSplus {
 	public:
 		~SafeString();
 		SafeString();
-		SafeString(const wchar_t* string,unsigned int maxlength = 256);
+		SafeString(const char* string, unsigned int maxlength=256, unsigned int codepage=0);
+		SafeString(const wchar_t* string,unsigned int maxlength=256);
 		SafeString(unsigned int size);
 		SafeString(SafeString& copy);
 		bool IsNullOrEmpty() const;
 		SafeString& SPrintF(unsigned int maxLength, const wchar_t* format, ...); 
 		operator const wchar_t*() const;
 		operator wchar_t*();
-
+		const char* ToAnsi( unsigned int codepage = 0) const;
 	private: 
 		void Resize(unsigned int maxlength);
 		void Deallocate();
 		void Empty();
 		void Copy( const wchar_t* string,unsigned int maxlength );
+		void Copy( const char* string,unsigned int maxlength, unsigned int codepage);
 
 	};
 

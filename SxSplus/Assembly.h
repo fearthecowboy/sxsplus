@@ -11,9 +11,27 @@
 // </license>
 //-----------------------------------------------------------------------
 
+#include "SafeString.h"
+#include "FourPartVersion.h"
+#include "PublicKeyToken.h"
+#include "ptr.h"
+
 namespace SxSplus {
-	class AssemblyReference {
-		AssemblyIdentity Identity;
+	class SxSAssembly {
+	
+	public: 
+		Ptr<SafeString> Name;
+		FourPartVersion Version;
+		enum Architecture Architecture;
+		Ptr<SafeString> Language;
+		Ptr<SafeString> PublicKeyToken;
+
 		SafeString Location;
+
+	public:
+		~SxSAssembly();
+		SxSAssembly();
+		static Ptr<SxSAssembly> SxSGetAssemblyByStrongName(Ptr<SafeString> canonicalStrongName);
 	};
 };
+

@@ -13,11 +13,9 @@
 
 
 #include "stdafx.h"
-#include "SxSplus.h"
 #include "SafeString.h"
 #include "ModuleStack.h"
 #include <Strsafe.h>
-#include "SxSInternal.h"
 
 using namespace SxSplus;
 
@@ -39,7 +37,19 @@ SXSPLUS_API void* SxSTest() {
 		GetModuleFileNameW( *it, result->Buffer, result->Length);
 		wprintf(L" MODULE=>: %s\r\n", result->Buffer);
 	}
-		
+	
+
+	SafeString ansi = "Garrett Serack\r\n";
+	SafeString wide = L"GARRETT SERACK\r\n";
+
+	wprintf( ansi);
+	wprintf( wide);
+
+	auto ansichar = wide.ToAnsi();
+	printf(ansichar);
+
+	SxSDispose((void*)ansichar);
+
 	return NULL;
 }
 

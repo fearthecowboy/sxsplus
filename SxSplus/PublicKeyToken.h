@@ -13,6 +13,17 @@
 
 namespace SxSplus {
 	class PublicKeyToken {
-		wchar_t key[16];
+		union {
+			wchar_t keyString[17]; 
+			struct {
+				wchar_t key[16];
+				wchar_t trailingNull;
+			};
+		};
+
+		PublicKeyToken() {
+			memset(keyString, 0, 17*sizeof(wchar_t));
+		}
+		
 	};
 };

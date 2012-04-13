@@ -11,7 +11,6 @@
 //-----------------------------------------------------------------------
 
 #include "stdafx.h"
-#include "SxSplus.h"
 #include "ptr.h"
 
 using namespace SxSplus;
